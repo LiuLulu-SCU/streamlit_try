@@ -22,7 +22,7 @@ with col1:
 
 # python代码
 features = [[sepal_length, sepal_width, petal_length, petal_width]]
-model = pickle.load(open("/app/streamlit_try/model.pkl", "rb"))
+model = pickle.load(open("/streamlit_try/model.pkl", "rb"))
 prediction = model.predict(features)[0]
 mapping = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
 results = mapping[prediction]
@@ -32,12 +32,12 @@ with col2:
     st.header('Otput')
     if submitted and results == 'setosa':
         st.subheader(f'The predicted flower species is `{results}`!')
-        st.image(Image.open('/app/streamlit_try/setosa.png'))
+        st.image(Image.open('/streamlit_try/setosa.png'))
     elif submitted and results == 'versicolor':
         st.subheader(f'The predicted flower species is `{results}`!')
-        st.image(Image.open('/app/streamlit_try/versicolor.png'))
+        st.image(Image.open('/streamlit_try/versicolor.png'))
     elif submitted and results == 'virginica':
         st.subheader(f'The predicted flower species is `{results}`!')
-        st.image(Image.open('/app/streamlit_try/virginica.png'))
+        st.image(Image.open('/streamlit_try/virginica.png'))
     else:
         st.subheader('Place your input the `parameters` about :hibiscus:!')
