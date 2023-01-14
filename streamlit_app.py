@@ -1,25 +1,41 @@
 import numpy as np
-import altair as alt
-import pandas as pd
+import pickle
 import streamlit as st
 
-st.header('st.write')
-# Example 1
-st.write('Hello, *World!* :sunglasses:')
-# Example 2
-st.write(1234)
+# 标题
+st.title('Flower Class Prediction')
 
-df = pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-})
-st.write(df)
-# Example 4
-st.write('Below is a DataFrame:', df, 'Avove is a data frame')
+# 页面分左右两列，列宽比例3:2
+col1, col2 = st.columns([3, 2])
 
-df2 = pd.DataFrame(
-    np.random.randn(200, 3),
-    columns=['a', 'b', 'c'])
-c = alt.Chart(df2).mark_circle().encode(
-    x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
-st.write(c)
+# 第一列为输入
+with col1:
+    st.header('Input')
+    with st.form('my_form'):
+        sepal_length = st.number_input('Input the sepal length')
+        sepal_width = st.number_input('Input the sepal width')
+        petal_length = st.number_input('Input the petal length')
+        petal_width = st.number_input('Input the petal_width')
+        submitted = st.form_submit_button('Submit')
+
+# python代码
+features = [[sepal_length, sepal_width, petal_length, petal_width]]
+model = pickle.load(open("model.pkl", "rb"))
+prediction = model.predict(features)[0]
+mapping = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
+results = mapping[prediction]
+
+# 第二列为输出
+with col2:
+    st.header('Otput')
+    if submitted and results == 'setosa':
+        st.subheader(f'The predicted flower species is `{results}`!')
+        st.image(Image.open('setosa.png'))
+    elif submitted and results == 'versicolor':
+        st.subheader(f'The predicted flower species is `{results}`!')
+        st.image(Image.open('versicolor.png'))
+    elif submitted and results == 'virginica':
+        st.subheader(f'The predicted flower species is `{results}`!')
+        st.image(Image.open('virginica.png'))
+    else:
+        st.subheader('Place your input the `parameters` about :hibiscus:!')
