@@ -3,6 +3,10 @@ import pickle
 import streamlit as st
 from PIL import Image
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_iris
+
 # 标题
 st.title('Flower Class Prediction')
 
