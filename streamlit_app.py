@@ -9,6 +9,9 @@ from sklearn.datasets import load_iris
 
 # 标题
 st.title('Flower Class Prediction')
+st.markdown(' **这是一个使用机器学习随机森林算法对鸢尾花数据集进行分类预测的示例，by 刘卢路** ')
+st.markdown(
+    '请在页面左边输入sepal length、sepal width、petal length和petal width四个参数，并点击`Submit`按钮，即可得到预测的鸢尾花分类！')
 
 # 页面分左右两列，列宽比例3:2
 col1, col2 = st.columns([3, 2])
