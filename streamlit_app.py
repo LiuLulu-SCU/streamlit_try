@@ -2,7 +2,6 @@ import numpy as np
 import pickle
 import streamlit as st
 from PIL import Image
-import sklearn
 
 # 标题
 st.title('Flower Class Prediction')
