@@ -34,17 +34,24 @@ prediction = model.predict(features)[0]
 mapping = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
 results = mapping[prediction]
 
+prop =  max(model.predict_proba(features)[0])*100
+
 # 第二列为输出
 with col2:
     st.header('Otput')
     if submitted and results == 'setosa':
         st.subheader(f'The predicted flower species is `{results}`!')
+        st.subheader(f'And the predicted probability is {prop}%!')
         st.image(Image.open('setosa.png'))
     elif submitted and results == 'versicolor':
         st.subheader(f'The predicted flower species is `{results}`!')
+        st.subheader(f'And the predicted probability is {prop}%!')
         st.image(Image.open('versicolor.png'))
     elif submitted and results == 'virginica':
         st.subheader(f'The predicted flower species is `{results}`!')
+        st.subheader(f'And the predicted probability is {prop}%!')
         st.image(Image.open('virginica.png'))
     else:
         st.subheader('Place your input the `parameters` about :hibiscus:!')
+    
+    
