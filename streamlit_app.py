@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
 
 # 标题
-st.title('Flower Class Prediction')
+st.title('预测鸢尾花分类')
 st.markdown(
     ' **这是一个使用机器学习随机森林算法对鸢尾花数据集进行分类预测的示例，by [刘卢路](https://www.liululu.net/)** ')
 st.markdown(
@@ -19,13 +19,13 @@ col1, col2 = st.columns([3, 2])
 
 # 第一列为输入
 with col1:
-    st.header('Input')
+    st.header('输入')
     with st.form('my_form'):
-        sepal_length = st.number_input('Input the sepal length')
-        sepal_width = st.number_input('Input the sepal width')
-        petal_length = st.number_input('Input the petal length')
-        petal_width = st.number_input('Input the petal_width')
-        submitted = st.form_submit_button('Submit')
+        sepal_length = st.number_input('请输入花萼长度')
+        sepal_width = st.number_input('请输入花萼宽度')
+        petal_length = st.number_input('请输入花瓣长度')
+        petal_width = st.number_input('请输入花瓣宽度')
+        submitted = st.form_submit_button('提交')
 
 # python代码
 features = [[sepal_length, sepal_width, petal_length, petal_width]]
@@ -38,20 +38,20 @@ prop =  max(model.predict_proba(features)[0])*100
 
 # 第二列为输出
 with col2:
-    st.header('Otput')
+    st.header('输出')
     if submitted and results == 'setosa':
-        st.subheader(f'The predicted flower species is `{results}`!')
-        st.subheader(f'And the predicted probability is {prop}%!')
+        st.subheader(f'预测的鸢尾花类型为：`{results}`!')
+        st.subheader(f'预测概率为{prop}%!')
         st.image(Image.open('setosa.png'))
     elif submitted and results == 'versicolor':
-        st.subheader(f'The predicted flower species is `{results}`!')
-        st.subheader(f'And the predicted probability is {prop}%!')
+        st.subheader(f'预测的鸢尾花类型为：`{results}`!')
+        st.subheader(f'预测概率为{prop}%!')
         st.image(Image.open('versicolor.png'))
     elif submitted and results == 'virginica':
-        st.subheader(f'The predicted flower species is `{results}`!')
-        st.subheader(f'And the predicted probability is {prop}%!')
+        st.subheader(f'预测的鸢尾花类型为：`{results}`!')
+        st.subheader(f'预测概率为{prop}%!')
         st.image(Image.open('virginica.png'))
     else:
-        st.subheader('Place your input the `parameters` about :hibiscus:!')
+        st.subheader('请输入鸢尾花的花萼花瓣参数:hibiscus:!')
     
     
